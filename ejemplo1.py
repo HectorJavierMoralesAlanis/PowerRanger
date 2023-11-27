@@ -1,9 +1,8 @@
-import mysql.connector
+import sqlite3
+con = sqlite3.connect("rfid.db")
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="admin",
-  password="0c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be"
-)
+cur = con.cursor()
 
-print(mydb)
+
+res = cur.execute("SELECT * FROM alumnos")
+res.fetchone()
