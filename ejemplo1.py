@@ -4,7 +4,7 @@ conexion = sqlite3.connect('rfid.db')
 cursor = conexion.cursor()
 
 # Recuperamos los registros de la tabla de usuarios
-cursor.execute("SELECT * FROM alumnos")
+cursor.execute("SELECT * FROM administradores")
 
 # Mostrar el cursos a ver que hay ?
 print(cursor)
