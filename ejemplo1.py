@@ -10,4 +10,4 @@ conn = _mssql.connect(server, user, password, database)
 conn.execute_query('SELECT * FROM pets WHERE name=%s', 'alumnos')
 
 for row in conn:
-    print "ID=%d, Name=%s" % (row['id'], row['name'])
+    print ("ID=%d, Name=%s" % (row['id'], row['name']))
