@@ -9,4 +9,4 @@ ruta = "/var/www/html/ejemplo.py"
 #time.sleep(60)
 while aux == 0:
     time.sleep(1)
-    subprocess.run(['python',ruta])
+    subprocess.run(['py',ruta])
