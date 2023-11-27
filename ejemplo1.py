@@ -1,40 +1,38 @@
 import mysql.connector
 
-# Replace these values with your MySQL server credentials
-host = "localhost"
-user = "admin"
-password = "20c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be"
-database = "rfid"
+# Replace these values with your own database connection details
+db_config = {
+    # Replace these values with your MySQL server credentials
+    host = "localhost"
+    user = "admin"
+    password = "20c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be"
+    database = "rfid"
+}
 
-# Establish a connection to the MySQL server
 try:
-    connection = mysql.connector.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=database
-    )
+    # Establish a connection to the MySQL server
+    connection = mysql.connector.connect(**db_config)
 
-    if connection.is_connected():
-        print("Connected to the MySQL database")
+    # Create a cursor object to interact with the database
+    cursor = connection.cursor()
 
-        # Perform database operations here
+    # Example SELECT query
+    query = "SELECT * FROM your_table_name"
+    cursor.execute(query)
 
-         #Example SELECT query
-        query = "SELECT * FROM alumnos"
-        cursor.execute(query)
+    # Fetch all rows from the result set
+    result = cursor.fetchall()
 
-        # Fetch all rows from the result set
-        result = cursor.fetchall()
+    # Print the results
+    for row in result:
+        print(row)
 
-        # Print the results
-        for row in result:
-            print(row)
-except mysql.connector.Error as e:
-    print(f"Error connecting to MySQL: {e}")
+except mysql.connector.Error as err:
+    print(f"MySQL Error: {err}")
 
 finally:
-    # Close the database connection when done
-    if 'connection' in locals():
+    # Close the cursor and connection
+    if 'connection' in locals() and connection.is_connected():
+        cursor.close()
         connection.close()
-        print("Connection closed")
+        print("MySQL connection is closed.")
