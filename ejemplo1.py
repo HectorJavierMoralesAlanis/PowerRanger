@@ -1,16 +1,13 @@
-import sqlite3
+import _mssql
 
-conexion = sqlite3.connect('rfid.db')
-cursor = conexion.cursor()
+server = 'localhost'
+user = 'admin'
+password = '20c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be'
+database = 'rfid'
+conn = _mssql.connect(server, user, password, database)
 
-# Recuperamos los registros de la tabla de usuarios
-cursor.execute("SELECT * FROM administradores")
 
-# Mostrar el cursos a ver que hay ?
-print(cursor)
+conn.execute_query('SELECT * FROM pets WHERE name=%s', 'alumnos')
 
-# Recorremos el primer registro con el método fetchone, devuelve una tupla
-usuario = cursor.fetchone()
-print(usuario)
-
-conexion.close()
+for row in conn:
+    print "ID=%d, Name=%s" % (row['id'], row['name'])
