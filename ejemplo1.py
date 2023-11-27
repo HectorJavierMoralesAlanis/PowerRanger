@@ -1,30 +1,30 @@
-import sqlite3
+import mysql.connector
 
-# Connect to the SQLite database
-con = sqlite3.connect("rfid.db")
-cur = con.cursor()
+# Replace these values with your MySQL server credentials
+host = "localhost"
+user = "admin"
+password = "20c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be"
+database = "rfid"
 
+# Establish a connection to the MySQL server
 try:
-    # Check if the "alumnos" table exists
-    cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='alumnos';")
-    table_exists = cur.fetchone()
+    connection = mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database
+    )
 
-    if table_exists:
-        # If the table exists, fetch a record from it
-        cur.execute("SELECT * FROM alumnos")
-        result = cur.fetchone()
+    if connection.is_connected():
+        print("Connected to the MySQL database")
 
-        if result:
-            print(result)
-        else:
-            print("Table 'alumnos' is empty.")
-    else:
-        print("Table 'alumnos' does not exist.")
+        # Perform database operations here
 
-except sqlite3.Error as e:
-    print(f"SQLite error: {e}")
+except mysql.connector.Error as e:
+    print(f"Error connecting to MySQL: {e}")
 
 finally:
-    # Close the cursor and connection
-    cur.close()
-    con.close()
+    # Close the database connection when done
+    if 'connection' in locals():
+        connection.close()
+        print("Connection closed")
