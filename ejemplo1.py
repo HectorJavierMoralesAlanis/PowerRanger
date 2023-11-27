@@ -20,6 +20,16 @@ try:
 
         # Perform database operations here
 
+         #Example SELECT query
+        query = "SELECT * FROM alumnos"
+        cursor.execute(query)
+
+        # Fetch all rows from the result set
+        result = cursor.fetchall()
+
+        # Print the results
+        for row in result:
+            print(row)
 except mysql.connector.Error as e:
     print(f"Error connecting to MySQL: {e}")
 
