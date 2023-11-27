@@ -7,11 +7,11 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+// Connection details
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "admin";
+$password = "20c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be";
 $dbname = "rfid";
-
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 

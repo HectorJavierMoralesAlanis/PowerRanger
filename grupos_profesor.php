@@ -16,12 +16,11 @@ if (!$profesor_id) {
 }
 
 
-// Detalles de conexión
+// Connection details
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "admin";
+$password = "20c655592b90f29474c9fb6c04d39c83f1fb2249c93d27be";
 $dbname = "rfid";
-
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
