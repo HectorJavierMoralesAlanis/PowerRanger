@@ -4,7 +4,7 @@ print('getcwd: ', os.getcwd())
 print('__file__:   ',__file__)
 import subprocess
 
-
+aux = 0
 ruta = "/var/www/html/ejemplo.py"
 #time.sleep(60)
 while aux == 0:
